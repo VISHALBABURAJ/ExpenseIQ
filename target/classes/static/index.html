@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExpenseIQ — Smart Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     SIDEBAR NAVIGATION
+═══════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="url(#brandGrad)"/>
+                    <path d="M8 16C8 11.58 11.58 8 16 8s8 3.58 8 8-3.58 8-8 8-8-3.58-8-8z" stroke="white" stroke-width="1.5"/>
+                    <path d="M16 12v4l2.5 2.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="brandGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#6366f1"/>
+                            <stop offset="1" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-name">Expense Tracker</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-group">
+            <span class="nav-label">OVERVIEW</span>
+            <a class="nav-item active" data-page="dashboard" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                <span>Dashboard</span>
+            </a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">EXPENSES</span>
+            <a class="nav-item" data-page="add-expense" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                <span>Add Expense</span>
+            </a>
+            <a class="nav-item" data-page="expense-list" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                <span>All Expenses</span>
+            </a>
+        </div>
+        <div class="nav-group">
+            <span class="nav-label">ANALYTICS</span>
+            <a class="nav-item" data-page="reports" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+                <span>Reports</span>
+            </a>
+        </div>
+    </nav>
+</aside>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT AREA
+═══════════════════════════════════════════ -->
+<main class="main-content" id="mainContent">
+
+    <!-- Top Header Bar -->
+    <header class="topbar">
+        <div class="topbar-left">
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            <span class="page-subtitle" id="pageSubtitle">Welcome back — here's what's happening</span>
+        </div>
+        <div class="topbar-right">
+            <div class="search-bar" id="globalSearchBar" style="display:none">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="globalSearch" placeholder="Search expenses…" />
+            </div>
+            <button class="btn btn-primary" id="quickAddBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Add Expense
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══ PAGE: DASHBOARD ═══ -->
+    <section class="page" id="page-dashboard">
+
+        <!-- Stats Grid — fixed nesting/closing tags, removed Top Category card -->
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></div>
+                <div class="stat-body">
+                    <span class="stat-label">Total Expenses</span>
+                    <span class="stat-value" id="stat-total">₹0.00</span>
+                </div>
+            </div>
+            
+            </div>
+        </div>
+
+        <!-- Bottom section: recent expenses -->
+        <div class="dashboard-bottom">
+            <!-- Recent Expenses -->
+            <div class="card recent-card">
+                <div class="card-header">
+                    <h3>Recent Expenses</h3>
+                    <a href="#" class="card-link" data-page="expense-list">View all →</a>
+                </div>
+                <div class="recent-list" id="recentExpensesList">
+                    <div class="loading-msg">Loading…</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PAGE: ADD EXPENSE ═══ -->
+    <section class="page hidden" id="page-add-expense">
+        <div class="form-card">
+            <div class="form-card-header">
+                <h2 id="expenseFormTitle">New Expense</h2>
+                <p>Fill in the details below to record an expense.</p>
+            </div>
+            <form id="expenseForm" novalidate>
+                <input type="hidden" id="expenseId" />
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="expenseCategory">Category <span class="required">*</span></label>
+                        <select id="expenseCategory" required>
+                            <option value="">Select category</option>
+                            <option value="Food">🍔 Food</option>
+                            <option value="Transport">🚗 Transport</option>
+                            <option value="Shopping">🛍️ Shopping</option>
+                            <option value="Entertainment">🎬 Entertainment</option>
+                            <option value="Health">🏥 Health</option>
+                            <option value="Education">📚 Education</option>
+                            <option value="Utilities">💡 Utilities</option>
+                            <option value="Rent">🏠 Rent</option>
+                            <option value="Other">📦 Other</option>
+                        </select>
+                        <div class="form-group" id="customCategoryContainer" style="display:none;">
+                            <label for="customCategory">Custom Category</label>
+                            <input type="text" id="customCategory" placeholder="Enter your category" />
+                        </div>
+                        <span class="field-error" id="err-category"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount (₹) <span class="required">*</span></label>
+                        <input type="number" id="expenseAmount" placeholder="0.00" min="0.01" step="0.01" required />
+                        <span class="field-error" id="err-amount"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expenseDate">Date <span class="required">*</span></label>
+                        <input type="date" id="expenseDate" required />
+                        <span class="field-error" id="err-date"></span>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="expenseDescription">Description</label>
+                        <textarea id="expenseDescription" rows="3" placeholder="Optional note about this expense…" maxlength="500"></textarea>
+                        <span class="char-count" id="charCount">0 / 500</span>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" id="cancelFormBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submitExpenseBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+                        Save Expense
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ═══ PAGE: EXPENSE LIST ═══ -->
+    <section class="page hidden" id="page-expense-list">
+        <div class="list-toolbar">
+            <div class="search-bar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="listSearch" placeholder="Search by category or description…" />
+            </div>
+            <div class="filter-group">
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Shopping">Shopping</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                    <option value="Utilities">Utilities</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Other">Other</option>
+                </select>
+                <select id="filterPeriod">
+                    <option value="all">All Time</option>
+                    <option value="weekly">This Week</option>
+                    <option value="monthly">This Month</option>
+                    <option value="yearly">This Year</option>
+                </select>
+                <button class="btn btn-outline" id="exportCsvBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Export CSV
+                </button>
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table class="expense-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTableBody">
+                    <tr><td colspan="6" class="table-empty">Loading expenses…</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-footer">
+            <span id="tableCount">0 records</span>
+        </div>
+    </section>
+
+    <!-- ═══ PAGE: REPORTS ═══ -->
+    <section class="page hidden" id="page-reports">
+        <div class="report-tabs">
+            <button class="report-tab active" data-report="weekly">Weekly</button>
+            <button class="report-tab" data-report="monthly">Monthly</button>
+            <button class="report-tab" data-report="yearly">Yearly</button>
+            <button class="report-tab" data-report="category">By Category</button>
+        </div>
+
+        <div class="report-header-row">
+            <div class="report-summary-cards" id="reportSummaryCards"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 id="reportTableTitle">Report</h3>
+            </div>
+            <div class="table-wrapper">
+                <table class="expense-table">
+                    <thead id="reportTableHead">
+                        <tr>
+                            <th>#</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportTableBody">
+                        <tr><td colspan="5" class="table-empty">Select a report type above.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     DELETE CONFIRMATION MODAL
+═══════════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="deleteModal">
+    <div class="modal">
+        <div class="modal-icon danger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </div>
+        <h3>Delete Expense?</h3>
+        <p>This action cannot be undone. The expense will be permanently removed.</p>
+        <div class="modal-actions">
+            <button class="btn btn-ghost" id="cancelDeleteBtn">Cancel</button>
+            <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TOAST NOTIFICATION
+═══════════════════════════════════════════ -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

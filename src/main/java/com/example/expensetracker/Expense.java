@@ -1,13 +1,25 @@
 package com.example.expensetracker;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "expenses")
@@ -31,14 +43,14 @@ public class Expense {
     @Column(name = "expense_date", nullable = false)
     private LocalDate expenseDate;
 
-    @Column(name = "day")
-    private Integer day;
+    @Column(name = "expense_day")
+private Integer day;
 
-    @Column(name = "month")
-    private Integer month;
+    @Column(name = "expense_month")
+private Integer month;
 
-    @Column(name = "year")
-    private Integer year;
+    @Column(name = "expense_year")
+private Integer year;
 
     @Size(max = 500)
     @Column(name = "description", length = 500)
